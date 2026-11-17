@@ -159,6 +159,14 @@ details .more ul{padding-left:20px;color:var(--fg-muted)}
 .cfoot .note{font-size:.85rem;color:var(--fg-muted)}
 .cfoot .actions{display:flex;gap:10px}
 .cfoot .btn{min-height:44px;padding:0 20px}
+/* shared hover effect: lift, tilt, yellow (same as skill chips) */
+.btn,.icon-btn,.menu-btn,.filter,nav ul a{transition:transform .15s,background .15s,color .15s,box-shadow .15s,border-color .15s}
+.btn:hover,.btn:focus-visible,.icon-btn:hover,.menu-btn:hover,.filter[aria-pressed="false"]:hover,nav ul a:hover{background:var(--pop);color:#09090B}
+.filter[aria-pressed="true"]:hover{color:var(--on-accent)}
+@media(prefers-reduced-motion:no-preference){
+  .btn:hover,.icon-btn:hover,.menu-btn:hover,.filter:hover,nav ul a:hover{transform:translateY(-4px) rotate(-3deg);box-shadow:var(--shadow)}
+  .btn:active,.icon-btn:active,.menu-btn:active,.filter:active{transform:translate(2px,2px) rotate(0);box-shadow:none}
+}
 </style>
 </head>
 <body>
