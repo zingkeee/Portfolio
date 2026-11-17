@@ -167,6 +167,9 @@ details .more ul{padding-left:20px;color:var(--fg-muted)}
   .btn:hover,.icon-btn:hover,.menu-btn:hover,.filter:hover,nav ul a:hover{transform:translateY(-4px) rotate(-3deg);box-shadow:var(--shadow)}
   .btn:active,.icon-btn:active,.menu-btn:active,.filter:active{transform:translate(2px,2px) rotate(0);box-shadow:none}
 }
+/* project links */
+.plinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn-sm{min-height:40px;padding:0 14px;font-size:.88rem;box-shadow:2px 2px 0 var(--border)}
 </style>
 </head>
 <body>
@@ -265,19 +268,28 @@ details .more ul{padding-left:20px;color:var(--fg-muted)}
           <h3>[Project Name]</h3>
           <p>[One or two sentences on what it does and the problem it solves.]</p>
           <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-          <a class="link" href="#">View project →</a>
+          <div class="plinks">
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Live demo ↗</a>
+            <a class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">Source code ↗</a>
+          </div>
         </article>
         <article class="card reveal" data-cat="data">
           <h3>[Project Name]</h3>
           <p>[Short description. Coming soon is fine for now.]</p>
           <ul class="chips"><li>Tech</li><li>Tech</li></ul>
-          <a class="link" href="#">View project →</a>
+          <div class="plinks">
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Live demo ↗</a>
+            <a class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">Source code ↗</a>
+          </div>
         </article>
         <article class="card reveal" data-cat="tools">
           <h3>[Project Name]</h3>
           <p>[Short description.]</p>
           <ul class="chips"><li>Tech</li><li>Tech</li></ul>
-          <a class="link" href="#">View project →</a>
+          <div class="plinks">
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Live demo ↗</a>
+            <a class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">Source code ↗</a>
+          </div>
         </article>
       </div>
     </div>
@@ -450,6 +462,14 @@ details .more ul{padding-left:20px;color:var(--fg-muted)}
   document.getElementById('mailForm').addEventListener('submit', e => {
     e.preventDefault();
     say('Demo only: email sending is not connected yet.');
+  });
+
+  // project links: placeholder "#" links show a note instead of opening a blank tab
+  document.querySelectorAll('.plinks a').forEach(a => {
+    if (a.getAttribute('href') === '#') {
+      a.removeAttribute('target');
+      a.addEventListener('click', e => { e.preventDefault(); say('Link not added yet.'); });
+    }
   });
 </script>
 </body>
