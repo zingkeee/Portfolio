@@ -32,7 +32,7 @@ nav{display:flex;align-items:center;justify-content:space-between;min-height:60p
 .logo{font:700 1.15rem var(--display);text-decoration:none}
 nav ul{display:flex;gap:4px;list-style:none;padding:0}
 nav ul a{display:block;padding:10px 12px;text-decoration:none;font-weight:500;font-size:.95rem;border:2px solid transparent;transition:border-color .15s,background .15s}
-nav ul a:hover{border-color:var(--border);background:var(--pop)}
+@media(hover:hover){nav ul a:hover{border-color:var(--border);background:var(--pop)}}
 .menu-btn{display:none;color:var(--fg);background:var(--card);border:2px solid var(--border);box-shadow:2px 2px 0 var(--border);min-width:44px;min-height:44px;cursor:pointer;font:600 .9rem var(--display)}
 @media(max-width:720px){
   .menu-btn{display:block}
@@ -53,7 +53,7 @@ h1{font-size:clamp(2.5rem,8vw,4.75rem);margin-bottom:16px}
 
 .grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
 .card{background:var(--card);border:2px solid var(--border);box-shadow:var(--shadow);padding:22px;transition:transform .15s,box-shadow .15s}
-.card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--border)}
+@media(hover:hover){.card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--border)}}
 .card h3{font-size:1.2rem;margin-bottom:6px}
 .card p{color:var(--fg-muted);font-size:.97rem}
 .meta{font:600 .8rem var(--display);color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
@@ -131,7 +131,7 @@ details .more ul{padding-left:20px;color:var(--fg-muted)}
 
 /* chip hover */
 .skill-group .chips li{cursor:default;transition:transform .15s,background .15s}
-.skill-group .chips li:hover{transform:translateY(-4px) rotate(-3deg);background:var(--pop);color:#09090B}
+@media(hover:hover){.skill-group .chips li:hover{transform:translateY(-4px) rotate(-3deg);background:var(--pop);color:#09090B}}
 
 /* toast + back to top */
 #toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--fg);color:var(--bg);padding:12px 20px;font-weight:600;border:2px solid var(--border);transition:transform .3s;z-index:40}
@@ -161,10 +161,13 @@ details .more ul{padding-left:20px;color:var(--fg-muted)}
 .cfoot .btn{min-height:44px;padding:0 20px}
 /* shared hover effect: lift, tilt, yellow (same as skill chips) */
 .btn,.icon-btn,.menu-btn,.filter,nav ul a{transition:transform .15s,background .15s,color .15s,box-shadow .15s,border-color .15s}
-.btn:hover,.btn:focus-visible,.icon-btn:hover,.menu-btn:hover,.filter[aria-pressed="false"]:hover,nav ul a:hover{background:var(--pop);color:#09090B}
+.btn:focus-visible{background:var(--pop);color:#09090B}
+@media(hover:hover){
+.btn:hover,.icon-btn:hover,.menu-btn:hover,.filter[aria-pressed="false"]:hover,nav ul a:hover{background:var(--pop);color:#09090B}
 .filter[aria-pressed="true"]:hover{color:var(--on-accent)}
+}
 @media(prefers-reduced-motion:no-preference){
-  .btn:hover,.icon-btn:hover,.menu-btn:hover,.filter:hover,nav ul a:hover{transform:translateY(-4px) rotate(-3deg);box-shadow:var(--shadow)}
+  @media(hover:hover){.btn:hover,.icon-btn:hover,.menu-btn:hover,.filter:hover,nav ul a:hover{transform:translateY(-4px) rotate(-3deg);box-shadow:var(--shadow)}}
   .btn:active,.icon-btn:active,.menu-btn:active,.filter:active{transform:translate(2px,2px) rotate(0);box-shadow:none}
 }
 /* project links */
@@ -175,6 +178,39 @@ details .more ul{padding-left:20px;color:var(--fg-muted)}
 #projectGrid .plinks{margin-top:auto;padding-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 #projectGrid .plinks .btn{justify-content:center;white-space:nowrap;padding:0 8px}
 #projectGrid .plinks:has(a:only-child){grid-template-columns:1fr}
+/* ---------- mobile ---------- */
+body{overflow-x:clip}
+button,a{touch-action:manipulation}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))}
+#toast{max-width:calc(100% - 32px);text-align:center}
+@media(max-width:720px){
+  body{font-size:16px}
+  section{padding:48px 0}
+  .hero{padding:48px 0 40px}
+  h2{font-size:1.6rem}
+  .s1{width:60px;height:60px;top:24px}
+  .s2{width:44px;height:44px;bottom:24px}
+  .s3{display:none}
+  .btns .btn{flex:1 1 140px;justify-content:center}
+  .marquee-track{font-size:1rem;gap:28px}
+  .timeline{gap:18px}
+  #toTop{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:520px){
+  .contact-links{display:grid;grid-template-columns:1fr 1fr}
+  .contact-links .btn{justify-content:center;padding:0 10px}
+  .filters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .filter{padding:0;font-size:.85rem}
+  .cfoot{flex-direction:column;align-items:stretch}
+  .cfoot .actions{width:100%}
+  .cfoot .actions .btn{flex:1;justify-content:center}
+  .crow{padding:0 12px;gap:8px}
+  .crow label{min-width:52px}
+}
+@media(max-width:370px){
+  #projectGrid .plinks{grid-template-columns:1fr}
+  .card{padding:18px}
+}
 </style>
 </head>
 <body>
